@@ -24,7 +24,8 @@ app.get('/class', (req, res) => {
 
 // API generate feedback
 app.post('/generate-feedback', async (req, res) => {
-  const { promt } = req.body;
+  const { promt,api_key_user } = req.body;
+  const final_api_key = api_key_user || api_key
   // console.log("1:",promt)
 
   // Gửi request đến OpenRouter API
@@ -40,7 +41,7 @@ app.post('/generate-feedback', async (req, res) => {
       ]
     }, {
       headers: {
-        "Authorization": `Bearer ${api_key}`,
+        "Authorization": `Bearer ${final_api_key}`,
         // "HTTP-Referer": "<YOUR_SITE_URL>", // Optional. Site URL for rankings on openrouter.ai.
         "X-Title": `${name_app}`, // Optional. Site title for rankings on openrouter.ai.
         "Content-Type": "application/json"

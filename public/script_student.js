@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const attitude = document.getElementById("attitude").value;
     const focus = document.getElementById("focus").value;
     const independence = document.getElementById("independence").value;
+    const apikey = document.getElementById("api-key").value || ""
     
 
     // Khóa nút, hiển thị spinner và nút hủy
@@ -53,7 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/generate-feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ promt: prompt }),
+        body: JSON.stringify({ 
+          promt: prompt,
+          api_key: apikey
+        }),
       });
 
       const data = await response.json();

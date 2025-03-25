@@ -48,6 +48,48 @@ label {
   font-weight: bold;
 }
 
+.api-key {
+  margin-bottom: 20px; /* Khoảng cách dưới */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style cho label (nếu cần hiển thị label) */
+.api-key label {
+  font-size: 10px;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+/* Style cho ô nhập liệu */
+.api-key input {
+  padding: 10px 25px; /* Tăng padding để ô nhập liệu to hơn */
+  font-size: 15px; /* Tăng kích thước font chữ */
+  border: 2px solid #ccc; /* Viền màu xám */
+  border-radius: 8px; /* Bo góc nhẹ */
+  outline: none; /* Loại bỏ viền khi focus */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển màu viền và bóng khi focus */
+}
+
+/* Style khi ô nhập liệu được focus */
+.api-key input:focus {
+  border-color: #4CAF50; /* Màu viền khi focus */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Hiệu ứng bóng nhẹ khi focus */
+}
+
+/* Style cho placeholder */
+.api-key input::placeholder {
+  color: #aaa; /* Màu nhạt cho placeholder */
+  font-style: italic; /* In nghiêng */
+}
+
+/* Hiệu ứng hover cho ô nhập liệu */
+.api-key input:hover {
+  border-color: #3e8e41; /* Màu viền khi hover */
+}
+
 select {
   width: max-content;  /* Chiều rộng theo nội dung dài nhất */
   margin-bottom: 10px;
