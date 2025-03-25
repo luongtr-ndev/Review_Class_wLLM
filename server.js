@@ -25,7 +25,7 @@ app.get('/class', (req, res) => {
 // API generate feedback
 app.post('/generate-feedback', async (req, res) => {
   const { promt,api_key_user } = req.body;
-  const final_api_key = api_key_user || api_key
+  const final_api_key = api_key_user || "api_key"
   // console.log("1:",promt)
 
   // Gửi request đến OpenRouter API
