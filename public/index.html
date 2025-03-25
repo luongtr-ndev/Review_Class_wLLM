@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script_student.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Generate Feedback for Student</h1>
+    <button id="go-to-class-btn"> Class Feedback</button>
+    <form id="feedback-form">
+      <div class="confidence">
+        <label for="confidence">Confidence: </label>
+        <select id="confidence">
+          <option value="">No select</option>
+          <option value="Tự tin, tích cực phát biểu và luôn đóng góp ý kiến">⭐⭐⭐⭐⭐</option>
+          <option value="Tự tin, trả lời các câu hỏi">⭐⭐⭐⭐</option>
+          <option value="Tự tin nhưng thỉnh thoảng không phát biểu.">⭐⭐⭐</option>
+          <option value="Thiếu tự tin, phát biểu không đều">⭐⭐</option>
+          <option value="Rất thiếu tự tin, không phát biểu nhiều">⭐</option>
+        </select>
+      </div>
+      <div class="comprehension">
+        <label for="comprehension">Comprehension:</label>
+        <select id="comprehension">
+          <option value="">No select</option>
+          <option value="Tiếp thu rất nhanh, hiểu sâu, áp dụng linh hoạt">⭐⭐⭐⭐⭐</option>
+          <option value="Hiểu bài nhanh, tiếp thu tốt, có thể áp dụng hiệu quả">⭐⭐⭐⭐</option>
+          <option value="Tiếp thu được bài, đôi khi cần thời gian để hiểu rõ">⭐⭐⭐</option>
+          <option value="Cần nhiều thời gian để hiểu bài, cần hỗ trợ nhiều để tiếp thu được kiến thức">⭐⭐</option>
+          <option value="Gặp nhiều khó khăn trong việc tiếp thu, cần hướng dẫn liên tục.">⭐</option>
+        </select>
+      </div>
+      <div class="practice">
+        <label for="practice">Practice:</label>
+        <select id="practice">
+          <option value="">No select</option>
+          <option value="Áp dụng thành công, sáng tạo, giải quyết vấn đề nhanh chóng và hiệu quả">⭐⭐⭐⭐⭐</option>
+          <option value="Áp dụng tốt, thực hành hiệu quả và có khả năng giải quyết vấn đề cơ bản">⭐⭐⭐⭐</option>
+          <option value="Áp dụng được kiến thức, đôi khi còn cần hỗ trợ để hoàn thiện bài tập">⭐⭐⭐</option>
+          <option value="Khó áp dụng kiến thức vào thực hành, giải quyết vấn đề chưa hiệu quả">⭐⭐
+          </option>
+          <option value="Gặp nhiều khó khăn trong việc áp dụng kiến thức, cần trợ giúp thường xuyên">⭐</option>
+        </select>
+      </div>
+      <div class="comunication">
+        <label for="comunication">Communication:</label>
+        <select id="comunication">
+          <option value="">No select</option>
+          <option value="Hợp tác tốt, chủ động hỗ trợ và làm việc hiệu quả với nhóm">⭐⭐⭐⭐⭐</option>
+          <option value="Hợp tác tốt, sẵn sàng trao đổi và đóng góp ý kiến">⭐⭐⭐⭐</option>
+          <option value="Có thể làm việc nhóm nhưng đôi khi chưa chủ động">⭐⭐⭐</option>
+          <option value="Hợp tác còn hạn chế, ít đóng góp trong nhóm">⭐⭐</option>
+          <option
+            value="Gặp khó khăn trong làm việc nhóm, ít tương tác với thành viên khác">⭐</option>
+        </select>
+      </div>
+      <div class="creativity">
+        <label for="creativity">Creativity:</label>
+        <select id="creativity">
+          <option value="">No select</option>
+          <option value="Rất sáng tạo, luôn đưa ra ý tưởng độc đáo và đột phá">⭐⭐⭐⭐⭐</option>
+          <option value="Có nhiều ý tưởng hay, đôi khi thể hiện sự sáng tạo đáng kể">⭐⭐⭐⭐</option>
+          <option value="Có sáng tạo nhưng chưa thường xuyên hoặc chưa đột phá">⭐⭐⭐</option>
+          <option value="Ít đưa ra ý tưởng mới, cần khuyến khích phát triển sáng tạo">⭐⭐</option>
+          <option value="Gần như không có ý tưởng sáng tạo, chưa mạnh dạn đề xuất mới">⭐</option>
+        </select>
+      </div>
+      <div class="focus">
+        <label for="focus">Focus:</label>
+        <select id="focus">
+          <option value="">No select</option>
+          <option value="Luôn tập trung cao độ, làm việc chăm chỉ và không bị xao nhãng">⭐⭐⭐⭐⭐</option>
+          <option value="Tập trung tốt, chăm chỉ, đôi khi có xao nhãng một chútnhưng nhanh chóng quay lại.">⭐⭐⭐⭐</option>
+          <option value="Thường chú ý nghe giảng nhưng đôi lúc mất tập trung, vẫn duy trì sự chăm chỉ">⭐⭐⭐</option>
+          <option value="Dễ mất tập trung, đôi khi thiếu sự chăm chỉ">⭐⭐</option>
+          <option value="Rất khó tập trung, không chăm chỉ, thường bị xao nhãng">⭐</option>
+        </select>
+      </div>
+      <div class="patience">
+        <label for="patience">Perseverance:</label>
+        <select id="patience">
+          <option value="">No select</option>
+          <option value="Luôn kiên nhẫn, sẵn sàng đối mặt với các bài tập khó">⭐⭐⭐⭐⭐</option>
+          <option value="Kiên nhẫn, có tinh thần vượt khó, đôi khi cần thêm động lực">⭐⭐⭐⭐</option>
+          <option value="Chấp nhận thử thách nhưng đôi lúc dễ nản, cần khuyến khích">⭐⭐⭐</option>
+          <option value="Thiếu kiên nhẫn, dễ bỏ cuộc khi gặp bài khó">⭐⭐</option>
+          <option value="Rất thiếu kiên nhẫn, né tránh thử thách và không cố gắng vượt qua">⭐</option>
+        </select>
+      </div>
+      <div class="attitude">
+        <label for="attitude">Attitude:</label>
+        <select id="attitude">
+          <option value="">No select</option>
+          <option value="Rất hứng thú và yêu thích môn học, luôn thể hiện sự đam mê và sáng tạo trong bài học">⭐⭐⭐⭐⭐</option>
+          <option value="Có sự yêu thích rõ rệt với môn học, thường xuyên đặt câu hỏivà thể hiện sự hào hứng">⭐⭐⭐⭐</option>
+          <option value="Đôi khi thiếu sự hứng thú đối với môn học, nhưng vẫn duy trì được mức độ tiếp nhận kiến thức">⭐⭐⭐</option>
+          <option value="Cảm thấy chưa thật sự yêu thích hoặc hứng thú với môn học, và đôi khi không có đủ động lực để tìm hiểu sâu hơn">⭐⭐</option>
+          <option value="Thái độ chưa thật sự tích cực, thiếu sự quan tâm và hứng thú với môn học, cần có sự thúc đẩy để tìm thấy niềm đam mê">⭐</option>
+        </select>
+      </div>
+      <div class="independence">
+        <label for="independence">Independence:</label>
+        <select id="independence">
+          <option value="">No select</option>
+          <option value="Hoàn toàn tự chủ, không cần hỗ trợ">⭐⭐⭐⭐⭐</option>
+          <option value="Tự lập, chỉ cần hướng dẫn ít">⭐⭐⭐⭐</option>
+          <option value="Có thể thực hành độc lập nhưng đôi khi cần hỗ trợ">⭐⭐⭐</option>
+          <option value="Cần hướng dẫn thường xuyên khi thực hành">⭐⭐</option>
+          <option value=" Phụ thuộc nhiều vào sự trợ giúp giáo viên, chưa tự tin thực hành">⭐</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button type="submit" id="generate-btn">
+          <span class="button-text">Generate Feedback</span>
+          <span class="spinner"></span>
+        </button>
+        <button type="button" id="cancel-btn">Hủy</button>
+      </div>
+    </form>
+
+    <div id="generated-feedback">
+      <button id="copy-btn">Copy</button>
+      <p id="response-time"></p>
+      <div id="feedback-result"></div>
+    </div>
+  </div>
+</body>
+
+</html>

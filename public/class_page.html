@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Generate Feedback for Class</h1>
+    <form id="feedback-form">
+      <div class="attitude">
+        <label for="attitude">Tinh thần học tập:</label>
+        <select id="attitude">
+          <option value="">Không đánh giá</option>
+          <option value="Chủ động, hăng hái, đam mê, luôn tìm tòi">Xuất sắc</option>
+          <option value="Nhiệt tình, phát biểu đầy đủ, có động lực">Tốt</option>
+          <option value="phát biểu đều nhưng đôi lúc chưa chủ động">Ổn định</option>
+          <option value="Thiếu động lực, ít chủ động trong học tập">Cần cải thiện</option>
+          <option value="Cần chú ý, ít phát biểu, ít hứng thú học tập">Chưa tốt</option>
+        </select>
+      </div>
+      <div class="focus">
+        <label for="focus">Sự tập trung:</label>
+        <select id="focus">
+          <option value="">Không đánh giá</option>
+          <option value="Luôn chú ý, tập trung cao, không bị xao nhãng">Xuất sắc</option>
+          <option value="Tập trung tốt, ít bị xao nhãng, duy trì sự chú ý">Tốt</option>
+          <option value="Thường tập trung nhưng đôi lúc xao nhãng">Ổn định</option>
+          <option value="Dễ mất tập trung, hay xao nhãng">Cần cải thiện</option>
+          <option value="Thiếu tập trung, không theo kịp bài học">Chưa tốt</option>
+        </select>
+      </div>
+      <div class="understanding">
+        <label for="understanding">Khả năng tiếp thu kiến thức:</label>
+        <select id="understanding">
+          <option value="">Không đánh giá</option>
+          <option value="Tiếp thu rất nhanh, hiểu sâu, áp dụng linh hoạt">Xuất sắc</option>
+          <option value="Hiểu bài nhanh, tiếp thu tốt, có thể áp dụng hiệu quả">Tốt</option>
+          <option value="Tiếp thu đủ, đôi khi cần thời gian để hiểu rõ">Ổn định</option>
+          <option value="Cần nhiều thời gian để hiểu bài, cần hỗ trợ nhiều để tiếp thu được kiến thức">Cần cải thiện
+          </option>
+          <option value="Gặp nhiều khó khăn trong việc tiếp thu, cần hướng dẫn liên tục">Chưa tốt</option>
+        </select>
+      </div>
+      <div class="practice">
+        <label for="practice">Khả năng áp dụng kiến thức vào bài tập:</label>
+        <select id="practice">
+          <option value="">Không đánh giá</option>
+          <option value="Áp dụng thành công, sáng tạo, giải quyết vấn đề nhanh chóng và hiệu quả">Xuất sắc</option>
+          <option value="Áp dụng tốt, thực hành hiệu quả và có khả năng giải quyết vấn đề cơ bản">Tốt</option>
+          <option value="Áp dụng được kiến thức, đôi khi còn cần hỗ trợ để hoàn thiện bài tập">Ổn định</option>
+          <option value="Khó áp dụng kiến thức vào thực hành, giải quyết vấn đề chưa hiệu quả">Cần cải thiện</option>
+          <option
+            value="Gặp nhiều khó khăn trong việc áp dụng kiến thức, cần trợ giúp thường xuyên để hoàn thành bài tập và thực hành">
+            Chưa tốt</option>
+        </select>
+      </div>
+      <div class="comunicate">
+        <label for="comunicate">Sự tương tác giữa các học viên:</label>
+        <select id="comunicate">
+          <option value="">Không đánh giá</option>
+          <option value="Chủ động giao tiếp, hợp tác tốt, luôn hỗ trợ và trao đổi với bạn bè">Xuất sắc</option>
+          <option value="Tương tác tốt, sẵn sàng trao đổi và hỗ trợ khi cần">Tốt</option>
+          <option value="Có sự tương tác nhưng chưa chủ động, đôi khi còn ngại trao đổi">Ổn định</option>
+          <option value="Ít tương tác, chủ yếu làm việc độc lập, chưa sẵn sàng hợp tác">Cần cải thiện</option>
+          <option value="Hầu như không tương tác, thiếu sự kết nối với bạn bè trong lớp">Chưa tốt</option>
+        </select>
+      </div>
+      <div class="performance">
+        <label for="performance">Cảm nhận chung về kết quả của cả lớp:</label>
+        <select id="performance">
+          <option value="">Không đánh giá</option>
+          <option value="Tiến bộ vượt bậc, kết quả học tập rất tốt">Xuất sắc</option>
+          <option value="Tiến bộ rõ rệt, đạt được nhiều mục tiêu đề ra">Tốt</option>
+          <option value="Có tiến bộ nhưng vẫn cần cải thiện thêm">Ổn định</option>
+          <option value="Tiến bộ chậm, chưa đạt được kỳ vọng">Cần cải thiện</option>
+          <option value="Kết quả chưa đạt yêu cầu, cần nhiều nỗ lực hơn">Chưa tốt</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button type="submit" id="generate-btn">
+          <span class="button-text">Generate Feedback</span>
+          <span class="spinner"></span>
+        </button>
+        <button type="button" id="cancel-btn">Hủy</button>
+      </div>
+    </form>
+
+    <div id="generated-feedback">
+      <button id="copy-btn">Copy</button>
+      <div id="feedback-result"></div>
+    </div>
+  </div>
+
+  <script src="script_class.js"></script>
+</body>
+
+</html>
