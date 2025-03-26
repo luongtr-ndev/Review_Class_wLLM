@@ -30,13 +30,13 @@ h1, h3 {
   align-items: center;    /* Căn giữa theo chiều dọc */
   gap: 10px;              /* Khoảng cách giữa label và select */
   margin-bottom: 10px;    /* Tạo khoảng cách giữa các nhóm */
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .attitude label, .focus label, .understanding label, .practice label, 
 .comunicate label, .independence label, .performance label,
 .confidence label, .comprehension label, .comunication label,
 .creativity label, .patience label {
-    width: 400px;  /* Độ rộng label để các select thẳng hàng */
+    width:400px;  /* Độ rộng label để các select thẳng hàng */
     font-weight: bold;
 }
 
