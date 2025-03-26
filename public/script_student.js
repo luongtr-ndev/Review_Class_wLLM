@@ -5,7 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonText = generateBtn.querySelector(".button-text");
   const feedbackResult = document.getElementById("feedback-result");
   const copyBtn = document.getElementById("copy-btn"); // Nút sao chép
+  const apiKeyInput = document.getElementById("api-key");
   const responseTimeDisplay = document.getElementById("response-time"); // Phần hiển thị thời gian phản hồi
+  const savedApiKey = localStorage.getItem("api-key-storage");
+  if (savedApiKey) {
+    apiKeyInput.value = savedApiKey;
+  }
+
+  let isCancelled = false;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -13,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Xóa nội dung feedback cũ trước khi tải dữ liệu mới
     feedbackResult.innerHTML = "";
     responseTimeDisplay.textContent = "";
+    document.getElementById("copied").textContent = "";
     // feedbackContainer.style.display = "none";
 
     // Lấy dữ liệu từ form1
@@ -25,11 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const attitude = document.getElementById("attitude").value;
     const focus = document.getElementById("focus").value;
     const independence = document.getElementById("independence").value;
-    const apikey = document.getElementById("api-key").value || ""
-    
+    const apikey = document.getElementById("api-key").value || "";
+
+    if (apikey) {
+      localStorage.setItem("api-key-storage", apikey);
+    }
 
     // Khóa nút, hiển thị spinner và nút hủy
     generateBtn.disabled = true;
+    apiKeyInput.disabled = true;
     generateBtn.classList.add("loading");
     buttonText.textContent = "Đang tạo...";
     cancelBtn.style.display = "inline-block";
@@ -54,17 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("/generate-feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           promt: prompt,
-          api_key_user: apikey
+          api_key_user: apikey,
         }),
       });
 
       const data = await response.json();
-      document.getElementById("feedback-result").innerHTML = formatFeedback(
-        data.feedback
-      );
-      document.getElementById("generated-feedback").style.display = "block";
+
+      if (isCancelled == false) {
+        document.getElementById("feedback-result").innerHTML = formatFeedback(
+          data.feedback
+        );
+        document.getElementById("generated-feedback").style.display = "block";
+      }
     } catch (error) {
       console.error("Error:", error);
       document.getElementById("feedback-result").textContent =
@@ -75,38 +90,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const endTime = new Date().getTime();
-    const responseTime = endTime - startTime
-    responseTimeDisplay.textContent = `Thời gian phản hồi: ${responseTime} ms`;
+    const responseTime = endTime - startTime;
+    if (!isCancelled)
+      responseTimeDisplay.textContent = `Thời gian phản hồi: ${responseTime} ms`;
   });
 
   // Xử lý khi nhấn "Hủy tạo"
   cancelBtn.addEventListener("click", () => {
+    isCancelled = true;
     resetButton();
   });
+
   document.getElementById("go-to-class-btn").addEventListener("click", () => {
-    console.log("Button clicked!"); // Kiểm tra xem sự kiện click có được kích hoạt hay không
     window.location.href = "/class"; // Chuyển hướng sau 500ms
   });
 
   // Xử lý khi nhấn "Copy"
   copyBtn.addEventListener("click", () => {
     const feedbackText = feedbackResult.innerText || feedbackResult.textContent; // Lấy nội dung feedback
-    if (feedbackText) {
-      // Sao chép nội dung vào bộ nhớ tạm
-      navigator.clipboard
-        .writeText(feedbackText)
-        .then(() => {
-          alert("Đã sao chép vào bộ nhớ tạm!");
-        })
-        .catch((err) => {
-          console.error("Không thể sao chép: ", err);
-        });
-    } else {
-      alert("Chưa có phản hồi để sao chép!");
+    if (navigator.clipboard) {
+      if (feedbackText) {
+        // Sao chép nội dung vào bộ nhớ tạm
+        navigator.clipboard
+          .writeText(feedbackText)
+          .then(() => {
+            // alert("Đã sao chép vào bộ nhớ tạm!");
+            document.getElementById("copied").textContent = "Copied";
+            document.getElementById("copied").style.color = "green";
+          })
+          .catch((err) => {
+            document.getElementById("copied").textContent = "Error copied";
+            copiedStatusElement.style.color = "red";
+            console.error("Không thể sao chép: ", err);
+          });
+      } else {
+        document.getElementById("copied").textContent = "Nothing to copy";
+        document.getElementById("copied").style.color = "orange"; // Thông báo không có nội dung
+        // alert("Chưa có phản hồi để sao chép!");
+      }
+    }else{
+      document.getElementById("copied").textContent = "Error copied";
+      document.getElementById("copied").style.color = "red"; // Thông báo không có nội dung
     }
   });
-
   function resetButton() {
+    apiKeyInput.disabled = false;
     generateBtn.disabled = false;
     generateBtn.classList.remove("loading");
     buttonText.textContent = "Generate Feedback";

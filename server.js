@@ -9,7 +9,13 @@ const port = process.env.PORT || 3000;
 const api_key = process.env.API_KEY;
 const name_app = process.env.NAME_APP;
 
-// Cấu hình thư mục public cho các file tĩnh
+// THêm CSP cho web - Content Security Policy
+// Phòng chống XSS
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';");
+  next();
+});
+
 app.use(express.static('public'));
 app.use(express.json());
 
@@ -25,7 +31,7 @@ app.get('/class', (req, res) => {
 // API generate feedback
 app.post('/generate-feedback', async (req, res) => {
   const { promt,api_key_user } = req.body;
-  const final_api_key = api_key_user || "api_key"
+  const final_api_key = api_key_user || api_key
   // console.log("1:",promt)
 
   // Gửi request đến OpenRouter API
