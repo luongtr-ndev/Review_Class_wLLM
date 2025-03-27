@@ -24,15 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // feedbackContainer.style.display = "none";
 
     // Lấy dữ liệu từ form1
-    const confidence = document.getElementById("confidence").value;
-    const comprehension = document.getElementById("comprehension").value;
-    const comunication = document.getElementById("comunication").value;
-    const practice = document.getElementById("practice").value;
-    const creativity = document.getElementById("creativity").value;
-    const patience = document.getElementById("patience").value;
-    const attitude = document.getElementById("attitude").value;
-    const focus = document.getElementById("focus").value;
-    const independence = document.getElementById("independence").value;
+    const confidence = document.getElementById("confidence");
+    const comprehension = document.getElementById("comprehension");
+    const comunication = document.getElementById("comunication");
+    const practice = document.getElementById("practice");
+    const creativity = document.getElementById("creativity");
+    const patience = document.getElementById("patience");
+    const attitude = document.getElementById("attitude");
+    const focus = document.getElementById("focus");
+    const independence = document.getElementById("independence");
     const apikey = document.getElementById("api-key").value || "";
 
     if (apikey) {
@@ -46,20 +46,22 @@ document.addEventListener("DOMContentLoaded", () => {
     buttonText.textContent = "Đang tạo...";
     cancelBtn.style.display = "inline-block";
 
-    const feedbackString = Object.values({
-      attitude,
-      comprehension,
-      comunication,
-      practice,
-      creativity,
-      patience,
-      focus,
-      independence,
-      confidence,
-    }).join(", ");
+    const feedbackObject = {
+      attitude: document.getElementById("attitude").value,
+      comprehension: document.getElementById("comprehension").value,
+      comunication: document.getElementById("comunication").value,
+      practice: document.getElementById("practice").value,
+      creativity: document.getElementById("creativity").value,
+      patience: document.getElementById("patience").value,
+      focus: document.getElementById("focus").value,
+      independence: document.getElementById("independence").value,
+      confidence: document.getElementById("confidence").value,
+    };
 
-    const prompt = `Write a brief and objective performance review for a programming student based on today's lesson. Use the following keywords as references but do not repeat them verbatim: ${feedbackString}. The response should be a short paragraph with exactly 3 natural and grammatically correct sentences in Vietnamese. Address the student using 'thầy' and 'con'. Keep the feedback concise, neutral, and uniquely reworded.`;
+    const feedbackString = Object.entries(feedbackObject).filter(([_,value]) => value!=="").map(([key,value])=> `${key}:${value}`).join(", ")
 
+    const prompt = `Write a details and objective performance review for a programming student on lesson based on the following evaluation criteria, each rated on a scale from 1 to 5: ${feedbackString}. The response should be a short paragraph with 3 natural and grammatically correct sentences in Vietnamese. Address the student using 'thầy' and 'con'. Keep the feedback concise, neutral, and uniquely reworded.`;
+    console.log(prompt);
     const startTime = new Date().getTime();
 
     try {
